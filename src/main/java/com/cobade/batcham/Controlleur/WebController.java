@@ -17,7 +17,7 @@ public class WebController {
     @Autowired
     private PersonneMetier personneMetier;
 
-    @GetMapping("/")
+    @GetMapping("/personnes")
     List<Personne> index(){
         return personneMetier.findAll();
     }
