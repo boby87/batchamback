@@ -20,7 +20,8 @@ public class Personne implements Serializable {
     @JoinColumn(name = "idsecteur")
     private SecteurVillage secteurVillage;
 
-
+    public Personne() {
+    }
 
     public Personne(String nomprenom, String datenaissance, String contact, String lieuresidence) {
         this.nomprenom = nomprenom;
