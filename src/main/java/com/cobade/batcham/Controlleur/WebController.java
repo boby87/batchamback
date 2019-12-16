@@ -3,6 +3,8 @@ package com.cobade.batcham.Controlleur;
 import com.cobade.batcham.Metier.PersonneMetier;
 import com.cobade.batcham.Model.Personne;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +21,7 @@ public class WebController {
     private PersonneMetier personneMetier;
 
     @GetMapping("/personnes")
-    List<Personne> index(){
-        return personneMetier.findAll();
+    Page<Personne> index(Pageable pageable){
+        return personneMetier.findAll(pageable);
     }
 }
