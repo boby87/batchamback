@@ -27,7 +27,7 @@ public class PersonneService implements PersonneMetier {
     }
 
     @Override
-    public Personne findByNomPrenom(String nom_prenom) {
-        return personneDao.findBynomprenom(nom_prenom);
+    public Page<Personne> findByNomPrenom(String nom_prenom,Pageable pageable) {
+        return personneDao.findBynomprenom(nom_prenom, pageable);
     }
 }

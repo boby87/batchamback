@@ -9,5 +9,5 @@ import java.util.List;
 public interface PersonneMetier {
     public Personne savePersonne(Personne personne);
     Page<Personne> findAll(Pageable pageable);
-    Personne findByNomPrenom(String nom_prenom);
+    Page<Personne> findByNomPrenom(String nom_prenom,Pageable pageable);
 }
