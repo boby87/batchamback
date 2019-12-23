@@ -17,6 +17,8 @@ public class BatchamApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		lectureFichier.getExcel();
+		lectureFichier.AddExcel();
+		lectureFichier.AddExcelQuartier();
+		lectureFichier.AddExcelSecteur();
 	}
 }

@@ -15,6 +15,13 @@ public class SecteurVillage implements Serializable {
     @OneToMany(mappedBy = "secteurVillage")
     private List<Personne> personnes;
 
+    public SecteurVillage(String nomsecteur) {
+        this.nomsecteur = nomsecteur;
+    }
+
+    public SecteurVillage() {
+    }
+
     public Long getIdsecteur() {
         return idsecteur;
     }

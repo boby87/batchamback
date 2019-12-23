@@ -1,7 +1,11 @@
 package com.cobade.batcham.Service;
 
 import com.cobade.batcham.Dao.PersonneDao;
+import com.cobade.batcham.Dao.QuartierDao;
+import com.cobade.batcham.Dao.SecteurDao;
 import com.cobade.batcham.Model.Personne;
+import com.cobade.batcham.Model.QuartierVille;
+import com.cobade.batcham.Model.SecteurVillage;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -20,10 +24,15 @@ public class LectureFichier {
 
     @Autowired
     private PersonneDao personneDao;
+    @Autowired
+    QuartierDao quartierDao;
+    @Autowired private SecteurDao secteurDao;
+
+
     XSSFWorkbook fichier;
     XSSFSheet feuille;
 
-    public void getExcel(){
+    public void AddExcel(){
         FileInputStream fils;
 
         {
@@ -62,6 +71,66 @@ public class LectureFichier {
                     System.out.println("la premiere ligne est "+test2);
                     personneDao.save(new Personne(row.getCell(0).getStringCellValue(),
                          test,test1,test2));
+                    //System.out.println(+"\t"+row.getCell(1).getStringCellValue()+"\t"+row.getCell(2).getStringCellValue());
+                    System.out.println();
+                    row=feuille.getRow(index++);
+                }
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+
+
+    public void AddExcelQuartier(){
+        FileInputStream fils;
+
+        {
+            try {
+                fils = new FileInputStream(new File("cobade.xlsx"));
+
+                fichier=new XSSFWorkbook(fils);
+                int index=0;
+                feuille=fichier.getSheetAt(2);
+                Row row=feuille.getRow(index++);
+                while (row!=null){
+
+                    System.out.println("la premiere ligne est "+row.getCell(0).getStringCellValue());
+                    quartierDao.save(new QuartierVille(row.getCell(0).getStringCellValue()));
+                    //System.out.println(+"\t"+row.getCell(1).getStringCellValue()+"\t"+row.getCell(2).getStringCellValue());
+                    System.out.println();
+                    row=feuille.getRow(index++);
+                }
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    public void AddExcelSecteur(){
+        FileInputStream fils;
+
+        {
+            try {
+                fils = new FileInputStream(new File("cobade.xlsx"));
+
+                fichier=new XSSFWorkbook(fils);
+                int index=0;
+                feuille=fichier.getSheetAt(3);
+                Row row=feuille.getRow(index++);
+                while (row!=null){
+
+                    System.out.println("la premiere ligne est "+row.getCell(0).getStringCellValue());
+                    secteurDao.save(new SecteurVillage(row.getCell(0).getStringCellValue()));
                     //System.out.println(+"\t"+row.getCell(1).getStringCellValue()+"\t"+row.getCell(2).getStringCellValue());
                     System.out.println();
                     row=feuille.getRow(index++);

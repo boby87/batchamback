@@ -15,6 +15,13 @@ public class QuartierVille implements Serializable {
     @OneToMany(mappedBy = "quartierVille")
     private List<Personne> personnes;
 
+    public QuartierVille() {
+    }
+
+    public QuartierVille(String nomquartier) {
+        this.nomquartier = nomquartier;
+    }
+
     public Long getIdquartier() {
         return idquartier;
     }
