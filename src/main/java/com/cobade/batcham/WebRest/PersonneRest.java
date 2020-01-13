@@ -53,4 +53,9 @@ public class PersonneRest {
     void addsecteurToUser(@RequestBody AddQuartieToUser addQuartieToUser){
         secteurMetier.AddSecteurToPersonne(addQuartieToUser.getIdpersonne(),addQuartieToUser.getIdquartorsecteur());
     }
+
+    @GetMapping("/connection/{nom}/{password}")
+    Personne connection(@PathVariable String nom,@PathVariable String password){
+        return personneMetier.connection(nom, password);
+    }
 }

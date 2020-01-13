@@ -15,5 +15,9 @@ public interface PersonneDao extends JpaRepository<Personne,Long> {
     Page<Personne> findBynomprenom(@Param("mc") String nomprenom,Pageable pageable);
     @Override
     Page<Personne> findAll(Pageable pageable);
+    @Query("select q from Personne q where q.nomprenom like :x ")
+    Personne findBynom(@Param("x")String nom);
+    @Query("select q from Personne q where q.nomprenom = nomprenom and q.password = password")
+    Personne findBynomprenomAndpassword(@Param("nomprenom") String nomprenom,@Param("password") String password);
 
 }

@@ -19,6 +19,7 @@ public class Personne implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idsecteur")
     private SecteurVillage secteurVillage;
+    private String password;
 
     public Personne() {
     }
@@ -84,5 +85,13 @@ public class Personne implements Serializable {
 
     public void setLieuresidence(String lieuresidence) {
         this.lieuresidence = lieuresidence;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

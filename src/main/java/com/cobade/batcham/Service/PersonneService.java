@@ -30,4 +30,19 @@ public class PersonneService implements PersonneMetier {
     public Page<Personne> findByNomPrenom(String nom_prenom,Pageable pageable) {
         return personneDao.findBynomprenom(nom_prenom, pageable);
     }
+
+    @Override
+    public Personne connection(String nom, String password) {
+        Personne personne=personneDao.findBynomprenomAndpassword(nom, password);
+        return personne;
+    }
+
+    @Override
+    public Personne findBynompersonne(String nom) {
+        Personne personne=personneDao.findBynom(nom);
+        if (personne!=null){
+            return personne;
+        }
+        return null;
+    }
 }
